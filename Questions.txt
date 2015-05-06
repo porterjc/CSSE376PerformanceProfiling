@@ -1,1 +1,5 @@
 1. 893 ms
+2. level 2 and 3 load about 2.8 times faster, and level 4 is slightly less than that time. 
+3. Many modern PC games have this option. Guild Wars 2 for example shows the fps in options all the time and offers a checkbox that will let you view the FPS on screen. In this game I would have a separate method that calculates and prints the FPS that could be toggled to run through a option in the game via a boolean. 
+4. Avearge FPS is about 22 frames, which is a slideshow compared to 60FPS. 
+5. drawTileImage is using quite a lot of the CPU. 

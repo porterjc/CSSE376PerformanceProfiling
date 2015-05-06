@@ -50,6 +50,7 @@ public class Level {
 	public final int BARRIER_0 = 19;
 
 	// Level Field Variables.
+	private boolean edited = true;
 	private int mapWidth; // The map array width.
 	private int mapHeight; // The map array height.
 	private int[][] map; // The map array. (height, width)
@@ -331,12 +332,15 @@ public class Level {
 		int currentPosition;
 		// cache the tile background in an image so tiles don't need to be drawn again and again redundantly.
 		Graphics2D g = img.createGraphics();
-		for (int r = 0; r < this.map.length; r++) {
-			for (int c = 0; c < this.map[r].length; c++) {
-				currentPosition = this.map[r][c];
-				drawTileImage(currentPosition, r, c, g);
+		if(edited){
+			for (int r = 0; r < this.map.length; r++) {
+				for (int c = 0; c < this.map[r].length; c++) {
+					currentPosition = this.map[r][c];
+					drawTileImage(currentPosition, r, c, g);
+				}
 			}
 		}
+		edited = false;
 		g.dispose();
 		// draw cached tiles
 		g2.drawImage(img, 0, 0, img.getWidth(), img.getHeight(), null);
@@ -384,6 +388,8 @@ public class Level {
 	 */
 	public void updateTile(int x, int y, int tileID) {
 		this.map[x][y] = tileID;
+		Graphics2D g = img.createGraphics();
+		drawTileImage(tileID, x, y, g);
 	}
 
 	/**
